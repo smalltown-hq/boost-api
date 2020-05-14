@@ -1,0 +1,13 @@
+{
+  "env": {
+    "MAGIC_SECRET_KEY": "",
+    "MAGIC_PUB_KEY": "",
+    "MONGO_URL": ""
+  },
+  "build": {
+    "env": {
+      "MAGIC_SECRET_KEY": "",
+      "MAGIC_PUB_KEY": ""
+    }
+  }
+}

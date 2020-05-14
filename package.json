@@ -1,0 +1,21 @@
+{
+  "name": "boost-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ericadamski/boost-api.git",
+  "author": "Eric Adamski <er.adamski@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "next build",
+    "start": "next start",
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "@magic-sdk/admin": "*",
+    "@hapi/iron": "^6.0.0",
+    "mongoose": "^5.9.14",
+    "next": "^9.4.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
