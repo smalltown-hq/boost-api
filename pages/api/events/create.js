@@ -6,21 +6,11 @@ import Event from "models/Event";
 let db;
 
 export default async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  process.env.NODE_ENV === "production" &&
-    res.setHeader("Access-Control-Allow-Origin", "getboost.app, now.sh");
-
   if (req.method !== "POST") {
     return res.status(405).end();
   }
 
-  let body;
-
-  try {
-    body = JSON.parse(req.body);
-  } catch (error) {
-    return res.status(400).end("Malformed request body.");
-  }
+  const { body } = req;
 
   if (!db) {
     db = await Mongoose.connect(`${process.env.MONGO_URL}/boost`, {

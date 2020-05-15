@@ -6,10 +6,6 @@ import Question from "models/Question";
 let db;
 
 export default async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  process.env.NODE_ENV === "production" &&
-    res.setHeader("Access-Control-Allow-Origin", "getboost.app, now.sh");
-
   if (req.method !== "POST") {
     return res.status(405).end();
   }
@@ -21,13 +17,7 @@ export default async (req, res) => {
     });
   }
 
-  let body;
-
-  try {
-    body = JSON.parse(req.body);
-  } catch (error) {
-    return res.status(400).end("Malformed request body.");
-  }
+  const { body } = req;
 
   try {
     const question = await Question.findOne({ _id: req.query.id });

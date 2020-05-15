@@ -5,10 +5,6 @@ import User from "models/User";
 let db;
 
 export default async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  process.env.NODE_ENV === "production" &&
-    res.setHeader("Access-Control-Allow-Origin", "getboost.app, now.sh");
-
   if (req.method !== "GET") {
     return res.status(405).end();
   }
