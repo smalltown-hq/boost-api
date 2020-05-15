@@ -4,6 +4,9 @@ import Question from "models/Question";
 let db;
 
 export default async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
   if (req.method !== "GET") {
     return res.status(405).end();
   }
