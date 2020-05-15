@@ -22,6 +22,7 @@ export default async (req, res) => {
 
   try {
     // read and decrypt the cookie
+    console.log(req.cookies);
     const { id } = await AuthService.verify(req);
 
     let user = await User.findOne({ _id: id }, { did: 0, email: 0 });
@@ -32,6 +33,7 @@ export default async (req, res) => {
 
     return res.json(user.toObject());
   } catch (error) {
+    console.log(error);
     return res.status(401).end("Error accessing user.");
   }
 };
