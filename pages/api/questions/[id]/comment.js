@@ -8,7 +8,7 @@ let db;
 export default async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   process.env.NODE_ENV === "production" &&
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "getboost.app, now.sh");
 
   if (req.method !== "POST") {
     return res.status(405).end();
