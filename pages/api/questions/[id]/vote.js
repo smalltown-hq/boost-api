@@ -8,7 +8,7 @@ let db;
 export default async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
 
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     return res.status(405).end();
   }
 
@@ -19,22 +19,22 @@ export default async (req, res) => {
     });
   }
 
-  let body;
-
-  try {
-    body = JSON.parse(req.body);
-  } catch (error) {
-    return res.status(400).end("Malformed request body.");
-  }
-
   try {
     const question = await Question.findOne({ _id: req.query.id });
 
     if (!question) {
-      throw new Error("Cannot comment on that question.");
+      throw new Error("Cannot vote on that question.");
     }
 
-    question.comments.push({ content: body.content });
+    const votes = new Set(question.votes);
+
+    if (votes.has(req.query.voter)) {
+      votes.delete(req.query.voter);
+    } else {
+      votes.add(req.query.voter);
+    }
+
+    question.votes = Array.from(votes);
 
     return res.json((await question.save()).toObject());
   } catch (error) {

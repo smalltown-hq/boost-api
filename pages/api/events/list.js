@@ -1,6 +1,6 @@
 import Mongoose from "mongoose";
 import AuthService from "services/auth";
-import User from "models/User";
+import Event from "models/Event";
 
 let db;
 
@@ -19,17 +19,12 @@ export default async (req, res) => {
   }
 
   try {
-    // read and decrypt the cookie
     const { id } = await AuthService.verify(req);
 
-    let user = await User.findOne({ _id: id }, { did: 0, email: 0 });
+    const events = await Event.find({ createdBy: id });
 
-    if (!user) {
-      throw new Error("Could not find user");
-    }
-
-    return res.json(user.toObject());
+    res.json(events);
   } catch (error) {
-    return res.status(401).end("Error accessing user.");
+    return res.status(401).end(error.message || "Error creating event.");
   }
 };

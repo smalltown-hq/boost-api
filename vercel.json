@@ -1,13 +1,11 @@
 {
   "env": {
-    "MAGIC_SECRET_KEY": "",
-    "MAGIC_PUB_KEY": "",
+    "MAGIC_SECRET_KEY": "@boost-magic-link-skey",
     "MONGO_URL": ""
   },
   "build": {
     "env": {
-      "MAGIC_SECRET_KEY": "",
-      "MAGIC_PUB_KEY": ""
+      "MAGIC_SECRET_KEY": "@boost-magic-link-skey"
     }
   }
 }

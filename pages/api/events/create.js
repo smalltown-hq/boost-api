@@ -6,6 +6,7 @@ import Event from "models/Event";
 let db;
 
 export default async (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", true);
   if (req.method !== "POST") {
     return res.status(405).end();
   }
@@ -17,8 +18,6 @@ export default async (req, res) => {
   } catch (error) {
     return res.status(400).end("Malformed request body.");
   }
-
-  res.setHeader("Access-Control-Allow-Credentials", true);
 
   if (!db) {
     db = await Mongoose.connect(`${process.env.MONGO_URL}/boost`, {
@@ -41,12 +40,8 @@ export default async (req, res) => {
       createdBy: user._id,
     });
 
-    await event.save();
-
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    res.end(event._id.toString());
+    res.end((await event.save())._id.toString());
   } catch (error) {
-    console.log({ error });
     return res.status(401).end("Error creating event.");
   }
 };
