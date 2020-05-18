@@ -1,8 +1,7 @@
-// _BoostId
-const NAME = "_bid";
+const TOKEN_NAME = "token";
 
 function getAuthToken(cookies) {
-  return cookies[NAME];
+  return cookies[TOKEN_NAME];
 }
 
 export default { getAuthToken };
