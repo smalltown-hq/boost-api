@@ -28,7 +28,7 @@ export default async (req, res) => {
     )
       .limit(PAGE)
       .skip(skip);
-    const total = await Event.count({ createdBy: id });
+    const total = await Event.estimatedDocumentCount({ createdBy: id });
     const hasMore = total - (skip + PAGE) > 0;
 
     res.json({
@@ -39,6 +39,7 @@ export default async (req, res) => {
         hasMore && `/api/events/list?page=${Math.ceil((skip + PAGE) / PAGE)}`,
     });
   } catch (error) {
+    console.log(error);
     return res.status(401).end(error.message || "Error listing events.");
   }
 };
