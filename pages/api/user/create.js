@@ -21,10 +21,7 @@ export default async (req, res) => {
   }
 
   // get the decentralized ID from the authorization header
-  const did = req.headers.authorization
-    ?.split("Bearer")
-    .pop()
-    .trim();
+  const did = AuthService.parseAuthorizationHeader(req.headers.authorization);
 
   try {
     // get the user data from Magic Link using the decentralized Id and use it

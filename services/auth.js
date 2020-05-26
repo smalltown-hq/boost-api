@@ -28,4 +28,8 @@ function verify(req) {
   return token && Iron.unseal(token, SECRET, Iron.defaults);
 }
 
-export default { verify, verifyMagicLink, sign };
+function parseAuthorizationHeader(authorization) {
+  return getInstance().utils.parseAuthorizationHeader(authorization);
+}
+
+export default { verify, verifyMagicLink, sign, parseAuthorizationHeader };

@@ -11,7 +11,7 @@
     "dev": "next dev"
   },
   "dependencies": {
-    "@magic-sdk/admin": "*",
+    "@magic-sdk/admin": "^1.1.0",
     "@hapi/iron": "^6.0.0",
     "mongoose": "^5.9.14",
     "next": "^9.4.0",
